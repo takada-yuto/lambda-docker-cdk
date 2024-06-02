@@ -6,11 +6,8 @@ export class LambdaDockerCdkStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    // The code that defines your stack goes here
-
-    // example resource
-    // const queue = new sqs.Queue(this, 'LambdaDockerCdkQueue', {
-    //   visibilityTimeout: cdk.Duration.seconds(300)
-    // });
+    new cdk.aws_lambda.DockerImageFunction(this, "cdk-docker-container-lambda", {
+      code: cdk.aws_lambda.DockerImageCode.fromImageAsset("src"),
+    });
   }
 }
